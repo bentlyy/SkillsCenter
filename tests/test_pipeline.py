@@ -2,9 +2,9 @@ from datetime import date
 
 import pytest
 
-from skill_radar import db
-from skill_radar.models import Item
-from skill_radar.pipeline import _guardar
+from skillscenter import db
+from skillscenter.models import Item
+from skillscenter.pipeline import _guardar
 
 
 @pytest.fixture

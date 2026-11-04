@@ -1,4 +1,4 @@
-from skill_radar import facetas
+from skillscenter import facetas
 
 
 def test_tipo_agente_por_nombre_y_categoria():

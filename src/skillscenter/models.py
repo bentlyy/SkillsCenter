@@ -63,7 +63,7 @@ def dias_desde(valor: str | None, referencia: date | None = None) -> int | None:
     fecha = _fecha(valor)
     if fecha is None:
         return None
-    return ((referencia or ahora().date()) - fecha).days
+    return ((referencia or date.today()) - fecha).days
 
 
 @dataclass(slots=True)

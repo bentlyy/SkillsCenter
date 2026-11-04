@@ -1,8 +1,8 @@
 # Registra el rastreo diario en el Programador de tareas de Windows.
-# Uso: .\scripts\instalar-tarea.ps1 [-Hora "08:00"] [-Nombre "SkillRadarDiario"]
+# Uso: .\scripts\instalar-tarea.ps1 [-Hora "08:00"] [-Nombre "SkillsCenterDiario"]
 param(
     [string]$Hora = "08:00",
-    [string]$Nombre = "SkillRadarDiario"
+    [string]$Nombre = "SkillsCenterDiario"
 )
 
 $ErrorActionPreference = "Stop"
@@ -20,7 +20,7 @@ Register-ScheduledTask `
     -Action $accion `
     -Trigger $disparador `
     -Settings $ajustes `
-    -Description "Actualiza el catalogo de Skill Radar y genera el informe diario." `
+    -Description "Actualiza el catalogo de SkillsCenter y genera el informe diario." `
     -Force | Out-Null
 
 Write-Host "Tarea '$Nombre' registrada: todos los dias a las $Hora."

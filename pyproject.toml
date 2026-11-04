@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "skill-radar"
+name = "skillscenter"
 version = "0.1.0"
 description = "Radar de skills y herramientas de IA: rastrea GitHub, Reddit, Hacker News, MCP y paquetes, y los expone por MCP"
 readme = "README.md"
@@ -41,7 +41,7 @@ dependencies = [
 dev = ["pytest>=8.0.0"]
 
 [project.scripts]
-skill-radar = "skill_radar.__main__:main"
+skillscenter = "skillscenter.__main__:main"
 
 [project.urls]
 Homepage = "https://github.com/bentlyy/SkillsCenter"
@@ -49,10 +49,10 @@ Repository = "https://github.com/bentlyy/SkillsCenter"
 Issues = "https://github.com/bentlyy/SkillsCenter/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/skill_radar"]
+packages = ["src/skillscenter"]
 
 [tool.hatch.build.targets.wheel.force-include]
-"src/skill_radar/data" = "skill_radar/data"
+"src/skillscenter/data" = "skillscenter/data"
 
 [tool.hatch.build.targets.sdist]
 include = ["src", "tests", "README.md", "API.md", "CHANGELOG.md", "LICENSE"]

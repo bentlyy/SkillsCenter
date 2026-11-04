@@ -1,5 +1,5 @@
-from skill_radar.models import Item
-from skill_radar.taxonomy import clasificar
+from skillscenter.models import Item
+from skillscenter.taxonomy import clasificar
 
 
 def _item(nombre, descripcion="", topics=None, tipo="recurso"):

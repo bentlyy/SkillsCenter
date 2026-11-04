@@ -6,6 +6,8 @@ Todas las versiones notables de este proyecto se documentan aqui.
 
 Primera version funcional.
 
+- Proyecto renombrado a SkillsCenter: paquete `skillscenter`, comando
+  `skillscenter`, variables `SKILLSCENTER_*` y datos en `%LOCALAPPDATA%\skillscenter`.
 - Catalogo SQLite con items, snapshots diarios, puntuaciones, secciones y aportes.
 - Ocho fuentes: GitHub, registro MCP, awesome-lists, Hacker News, Reddit (OAuth),
   PyPI (RSS), npm y Hugging Face.

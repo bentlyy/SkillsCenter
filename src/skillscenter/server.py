@@ -19,7 +19,7 @@ from .digest import generar_digest
 from .pipeline import sincronizar as _sincronizar
 
 mcp = MCPServer(
-    "skill-radar",
+    "skillscenter",
     instructions=(
         "Busca skills y herramientas de IA en un catalogo local que se alimenta de "
         "GitHub, Reddit, Hacker News, el registro MCP, awesome-lists, PyPI, npm y "

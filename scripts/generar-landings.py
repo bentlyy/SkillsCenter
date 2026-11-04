@@ -17,7 +17,7 @@ SKILLS = [
             {
                 "slug": "01-editorial",
                 "nombre": "Editorial",
-                "kicker": "Skill Radar · Edición 01",
+                "kicker": "SkillsCenter · Edición 01",
                 "h1": "El catálogo de IA, <em>curado</em> como una revista.",
                 "lede": "1.901 herramientas, modelos y servidores MCP. Sin ruido, con criterio editorial y datos reales de crecimiento.",
                 "placeholder": "Busca una skill, un modelo, un servidor…",
@@ -117,7 +117,7 @@ SKILLS = [
                 "nota": "Salida limpia para humanos y agentes.",
                 "extra": """<div class="terminal" aria-hidden="true">
         <div class="terminal-bar"><i></i><i></i><i></i></div>
-        <pre>$ skill-radar sync
+        <pre>$ skillscenter sync
 <span class="ok">✓</span> 7 fuentes indexadas
 <span class="ok">✓</span> 1.901 entradas únicas
 <span class="ok">✓</span> scores calculados · 03/11/2026</pre>
@@ -364,7 +364,7 @@ def pagina(skill, p, v):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{p["nombre"]} · Skill Radar — {skill["nombre"]}</title>
+  <title>{p["nombre"]} · SkillsCenter — {skill["nombre"]}</title>
   <meta name="description" content="{p["lede"]}">
   <link rel="stylesheet" href="../assets/base.css">
   <link rel="stylesheet" href="style.css">
@@ -448,7 +448,7 @@ def pagina(skill, p, v):
   </main>
 
   <footer class="footer wrap">
-    <p><strong>skillradar</strong> · Catálogo abierto de herramientas de IA</p>
+    <p><strong>skillscenter</strong> · Catálogo abierto de herramientas de IA</p>
     <nav aria-label="Pie">
       <a href="#catalogo">Catálogo</a>
       <a href="#categorias">Categorías</a>
@@ -471,7 +471,7 @@ def pagina_compacta(skill, p, v):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Buscador compacto · Skill Radar</title>
+  <title>Buscador compacto · SkillsCenter</title>
   <meta name="description" content="Busca 1.901 entradas de IA por función, nombre, tipo o uso. Describe lo que necesitas y el radar interpreta la intención en tiempo real.">
   <link rel="stylesheet" href="../assets/base.css">
   <link rel="stylesheet" href="style.css">
@@ -623,7 +623,7 @@ def pagina_compacta(skill, p, v):
   </main>
 
   <footer class="footer wrap">
-    <p><strong>skillradar</strong> · Catálogo abierto de herramientas de IA</p>
+    <p><strong>skillscenter</strong> · Catálogo abierto de herramientas de IA</p>
     <nav aria-label="Pie">
       <a href="#catalogo">Catálogo</a>
       <a href="#necesidades">Necesidades</a>
@@ -659,7 +659,7 @@ def tarjeta(skill, p, v, prefijo=""):
 def cabecera_galeria(volver, kicker, titulo, lede, pills):
     return f"""  <header class="top wrap">
     <a class="back" href="{volver}">← Volver</a>
-    <span class="brand"><i aria-hidden="true"></i> skillradar · landings</span>
+    <span class="brand"><i aria-hidden="true"></i> skillscenter · landings</span>
   </header>
 
   <section class="hero wrap">
@@ -689,7 +689,7 @@ def indice_skill(skill):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{skill["nombre"]} · Landings — Skill Radar</title>
+  <title>{skill["nombre"]} · Landings — SkillsCenter</title>
   <link rel="stylesheet" href="../assets/galeria.css">
 </head>
 <body style="--accent:{skill["acento"]}">
@@ -701,7 +701,7 @@ def indice_skill(skill):
   </main>
 
   <footer class="footer wrap">
-    <span>Skill Radar · {skill["nombre"]}</span>
+    <span>SkillsCenter · {skill["nombre"]}</span>
     <span>Generado desde el catálogo local · 2026</span>
   </footer>
 </body>
@@ -745,8 +745,8 @@ def indice_raiz():
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Landings · Skill Radar</title>
-  <meta name="description" content="25 landings en 5 sistemas de diseño para el catálogo Skill Radar.">
+  <title>Landings · SkillsCenter</title>
+  <meta name="description" content="25 landings en 5 sistemas de diseño para el catálogo SkillsCenter.">
   <link rel="stylesheet" href="assets/galeria.css">
 </head>
 <body>
@@ -756,7 +756,7 @@ def indice_raiz():
   </main>
 
   <footer class="footer wrap">
-    <span>Skill Radar · landings estáticas con datos reales</span>
+    <span>SkillsCenter · landings estáticas con datos reales</span>
     <span>31 páginas HTML · sin frameworks ni dependencias</span>
   </footer>
 </body>

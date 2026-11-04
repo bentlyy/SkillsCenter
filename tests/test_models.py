@@ -1,4 +1,4 @@
-from skill_radar.models import Item, normalizar, slug_unico
+from skillscenter.models import Item, normalizar, slug_unico
 
 
 def test_normalizar_quita_acentos_y_puntuacion():

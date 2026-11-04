@@ -8,7 +8,7 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
-from skill_radar import db
+from skillscenter import db
 
 NOMBRES = {
     "github": "GitHub",
@@ -70,7 +70,7 @@ def main():
         por_fuente[fila["fuente"]].append(dict(fila))
 
     lineas = [
-        f"# Catalogo Skill Radar — {date.today().isoformat()}",
+        f"# Catalogo SkillsCenter — {date.today().isoformat()}",
         "",
         f"**{len(filas)} entradas unicas** en {len(por_fuente)} fuentes.",
         "",

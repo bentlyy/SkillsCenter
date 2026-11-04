@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from skill_radar import db
-from skill_radar.models import Item
+from skillscenter import db
+from skillscenter.models import Item
 
 
 @pytest.fixture

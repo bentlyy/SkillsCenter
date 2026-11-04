@@ -26,7 +26,7 @@ PISTAS_TIPO = {
 
 @lru_cache(maxsize=1)
 def cargar_categorias() -> tuple[dict[str, Any], ...]:
-    texto = resources.files("skill_radar").joinpath("data/categorias.json").read_text("utf-8")
+    texto = resources.files("skillscenter").joinpath("data/categorias.json").read_text("utf-8")
     datos = json.loads(texto)
     for categoria in datos:
         categoria["claves_normalizadas"] = [

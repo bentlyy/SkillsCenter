@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 
-from skill_radar.models import Item
-from skill_radar.scoring import (
+from skillscenter.models import Item
+from skillscenter.scoring import (
     crecimiento_pct,
     factor_crecimiento,
     factor_frescura,

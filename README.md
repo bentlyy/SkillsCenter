@@ -1,4 +1,4 @@
-# Skill Radar
+# SkillsCenter
 
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -16,7 +16,7 @@ o un modelo nuevo. Buscarlo a mano en GitHub, Reddit, Hacker News y npm no escal
 y una IA sin acceso a datos frescos tiende a recomendar lo mismo de siempre o a
 inventarse enlaces.
 
-Skill Radar resuelve tres cosas:
+SkillsCenter resuelve tres cosas:
 
 1. **Recolecta** de fuentes publicas con APIs estables (no scraping fragil).
 2. **Normaliza y deduplica**: un repositorio de GitHub enlazado desde tres
@@ -73,51 +73,51 @@ pip install -e .
 
 Dependencias: `httpx` y `mcp`. Sin pandas, sin navegador, sin base de datos externa.
 
-Si el comando `skill-radar` no queda en el PATH, usa `python -m skill_radar ...`
+Si el comando `skillscenter` no queda en el PATH, usa `python -m skillscenter ...`
 (ambos son equivalentes).
 
 ## Configuracion
 
 | Variable | Para que | Por defecto |
 |----------|----------|-------------|
-| `SKILL_RADAR_DB` | Ruta del archivo SQLite | `%LOCALAPPDATA%\skill-radar\radar.db` |
-| `SKILL_RADAR_DIR` | Directorio de datos | igual que arriba |
+| `SKILLSCENTER_DB` | Ruta del archivo SQLite | `%LOCALAPPDATA%\skillscenter\radar.db` |
+| `SKILLSCENTER_DIR` | Directorio de datos | igual que arriba |
 | `GITHUB_TOKEN` / `GH_TOKEN` | Eleva el limite de la API de GitHub | sin token |
 | `REDDIT_CLIENT_ID` | Activa la fuente Reddit | desactivada |
 | `REDDIT_CLIENT_SECRET` | Activa la fuente Reddit | desactivada |
-| `SKILL_RADAR_SUBREDDITS` | Lista de subreddits separada por comas | 8 por defecto |
-| `SKILL_RADAR_UA` | User-Agent de las peticiones | `skill-radar/0.1` |
+| `SKILLSCENTER_SUBREDDITS` | Lista de subreddits separada por comas | 8 por defecto |
+| `SKILLSCENTER_UA` | User-Agent de las peticiones | `skillscenter/0.1` |
 
 La base vive fuera del repositorio a proposito: **SQLite sobre OneDrive puede
-corromperse** con los archivos WAL. Si quieres moverla, apunta `SKILL_RADAR_DB`
+corromperse** con los archivos WAL. Si quieres moverla, apunta `SKILLSCENTER_DB`
 a una carpeta local.
 
 ## Uso
 
 ```bash
-skill-radar init                      # crea la base y siembra secciones
-skill-radar sync                      # rastrea todas las fuentes
-skill-radar sync --fuente github --limite 30
-skill-radar stats                     # totales por fuente/tipo/seccion
-skill-radar fuentes                   # estado y ultimo error de cada fuente
-skill-radar buscar "mcp servidor" --categoria mcp --limite 10
-skill-radar tendencias --periodo 7d --orden crecimiento
-skill-radar digest --dias 1 --salida informes/hoy.md
-skill-radar serve                     # servidor MCP por stdio
+skillscenter init                      # crea la base y siembra secciones
+skillscenter sync                      # rastrea todas las fuentes
+skillscenter sync --fuente github --limite 30
+skillscenter stats                     # totales por fuente/tipo/seccion
+skillscenter fuentes                   # estado y ultimo error de cada fuente
+skillscenter buscar "mcp servidor" --categoria mcp --limite 10
+skillscenter tendencias --periodo 7d --orden crecimiento
+skillscenter digest --dias 1 --salida informes/hoy.md
+skillscenter serve                     # servidor MCP por stdio
 ```
 
 ## Servidor MCP
 
-Con el paquete instalado, el servidor se arranca con `skill-radar serve` (o
-`python -m skill_radar serve`). Ejemplo de configuracion para opencode:
+Con el paquete instalado, el servidor se arranca con `skillscenter serve` (o
+`python -m skillscenter serve`). Ejemplo de configuracion para opencode:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
-    "skill-radar": {
+    "skillscenter": {
       "type": "local",
-      "command": ["skill-radar", "serve"],
+      "command": ["skillscenter", "serve"],
       "enabled": true,
       "environment": {
         "GITHUB_TOKEN": "ghp_..."

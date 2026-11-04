@@ -16,7 +16,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
-from skill_radar import db, facetas
+from skillscenter import db, facetas
 
 NOMBRES = {
     "github": "GitHub",

@@ -129,7 +129,7 @@ def _cmd_serve(_: argparse.Namespace) -> int:
 
 def construir_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="skill-radar",
+        prog="skillscenter",
         description="Radar de skills y herramientas de IA.",
     )
     sub = parser.add_subparsers(dest="comando", required=True)

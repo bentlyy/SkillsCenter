@@ -1,4 +1,4 @@
-from skill_radar.dedupe import normalizar_url, uid_desde_url
+from skillscenter.dedupe import normalizar_url, uid_desde_url
 
 
 def test_normalizar_url_limpia_ruido():

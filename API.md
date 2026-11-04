@@ -2,7 +2,7 @@
 
 ## Servidor MCP
 
-Servidor `skill-radar`, transporte stdio. Arranque: `skill-radar serve`.
+Servidor `skillscenter`, transporte stdio. Arranque: `skillscenter serve`.
 
 Todas las herramientas devuelven JSON en texto, salvo `digest`, que devuelve
 Markdown. Los errores se devuelven como `{"error": "..."}` cuando aplica.
@@ -76,10 +76,10 @@ digest(dias=1, limite=15) -> Markdown
 ## API de Python
 
 ```python
-from skill_radar import db
-from skill_radar.pipeline import sincronizar
+from skillscenter import db
+from skillscenter.pipeline import sincronizar
 
-conn = db.conectar()          # ruta de SKILL_RADAR_DB o la de por defecto
+conn = db.conectar()          # ruta de SKILLSCENTER_DB o la de por defecto
 db.inicializar(conn)          # idempotente
 
 resumen = sincronizar(conn, fuentes=["github"], limite=25)
@@ -128,7 +128,7 @@ Item(
 
 ## Crear una fuente nueva
 
-1. Crea `src/skill_radar/sources/mi_fuente.py` con una clase que herede de
+1. Crea `src/skillscenter/sources/mi_fuente.py` con una clase que herede de
    `Fuente` e implemente `recolectar(cliente, limite) -> Resultado`.
 2. Devuelve objetos `Item` con `uid` estable.
 3. Registra la clase en `FABRICAS` de `sources/__init__.py`.

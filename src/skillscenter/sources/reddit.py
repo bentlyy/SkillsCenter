@@ -31,7 +31,7 @@ SUBREDDITS_POR_DEFECTO = (
 
 
 def _subreddits() -> tuple[str, ...]:
-    personalizados = os.getenv("SKILL_RADAR_SUBREDDITS")
+    personalizados = os.getenv("SKILLSCENTER_SUBREDDITS")
     if personalizados:
         return tuple(s.strip() for s in personalizados.split(",") if s.strip())
     return SUBREDDITS_POR_DEFECTO
