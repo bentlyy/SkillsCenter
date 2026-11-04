@@ -1,0 +1,33 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Distribucion
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Entornos
+.venv/
+venv/
+env/
+
+# Datos locales (la base vive fuera del repo por defecto)
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# Salida
+informes/
+
+# Editores
+.vscode/
+.idea/
+*.swp
+.DS_Store

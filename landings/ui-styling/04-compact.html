@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscador compacto · Skill Radar</title>
+  <meta name="description" content="Busca 1.901 entradas de IA por función, nombre, tipo o uso. Describe lo que necesitas y el radar interpreta la intención en tiempo real.">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../assets/compacto.css">
+</head>
+<body class="ui v4">
+  <a class="skip" href="#catalogo">Saltar al catálogo</a>
+
+  <header class="nav wrap">
+    <a class="logo" href="../index.html" aria-label="Volver a la galería">
+      <span class="logo-dot" aria-hidden="true"></span>
+      <span class="logo-text">skill<b>radar</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#necesidades">Necesidades</a>
+      <a href="#tipos">Tipos</a>
+      <a href="#usos">Usos</a>
+      <a href="#fuentes">Fuentes</a>
+    </nav>
+    <a class="nav-cta" href="#catalogo">Explorar <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="kicker">Buscador compacto</p>
+      <h1><span data-total>1.901</span> entradas.<br>Encuentra la que sirve.</h1>
+      <p class="lede">Describe lo que necesitas, aunque no sepas el nombre. El radar traduce la función a tipos, usos y tecnologías, y actualiza los resultados mientras escribes.</p>
+      <div class="buscador-panel">
+        <div class="buscador-barra">
+          <span class="live"><i aria-hidden="true"></i> Búsqueda en vivo</span>
+          <span class="live-cuenta" data-resultado-vivo aria-hidden="true">1.901 entradas</span>
+          <span class="buscador-ayuda" id="ayuda-buscador">Escribe una necesidad, no solo un nombre.</span>
+        </div>
+        <form class="search" role="search" data-buscador onsubmit="return false">
+          <div class="buscador-campo">
+            <svg class="buscador-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+            <input data-buscar type="search" placeholder="Ej.: diseño de páginas web, base de datos, automatizar tareas…" aria-label="Buscar en el catálogo por función o nombre" aria-describedby="ayuda-buscador" autocomplete="off" spellcheck="false" enterkeyhint="search">
+          </div>
+          <button type="button" data-limpiar>Limpiar</button>
+        </form>
+        <div class="interpretacion" data-interpretacion hidden>
+          <span class="interpretacion-label">Entendemos</span>
+          <div class="chips" data-intenciones-chips></div>
+        </div>
+        <div class="vista-previa" data-previa hidden aria-label="Vista previa de resultados">
+          <div class="vista-previa-head">
+            <span>Coincidencias en vivo</span>
+            <span data-previa-n></span>
+          </div>
+          <div class="vista-previa-lista" data-previa-lista></div>
+          <button class="btn-mini" type="button" data-ver-resultados>Ver todos los resultados <span aria-hidden="true">↓</span></button>
+        </div>
+        <p class="sugerencias">Prueba:
+          <button type="button" data-sugerencia="diseño de páginas web">diseño de páginas web</button>
+          <button type="button" data-sugerencia="base de datos">base de datos</button>
+          <button type="button" data-sugerencia="automatizar tareas">automatizar tareas</button>
+          <button type="button" data-sugerencia="crear prompts">crear prompts</button>
+          <button type="button" data-sugerencia="rag">RAG</button>
+        </p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn" href="#catalogo">Ver catálogo</a>
+        <a class="btn ghost" href="#necesidades">Explorar por necesidad</a>
+      </div>
+    </section>
+
+    <section class="stats wrap" id="fuentes" aria-label="Cifras del catálogo">
+      <div class="stat"><strong data-total>1.901</strong><span>entradas</span></div>
+      <div class="stat"><strong data-tipos-n>9</strong><span>tipos</span></div>
+      <div class="stat"><strong data-usos-n>14</strong><span>usos</span></div>
+      <div class="stat"><strong data-fuentes-n>7</strong><span>fuentes</span></div>
+    </section>
+
+    <section class="necesidades wrap" id="necesidades">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Si no sabes el nombre</p>
+          <h2>Empieza por lo que necesitas.</h2>
+        </div>
+        <p class="section-note">Elige una intención y el buscador la convierte en una consulta con tipos, usos y tecnologías afines.</p>
+      </div>
+      <div class="intenciones-grid" data-intenciones></div>
+    </section>
+
+    <section class="catalogo wrap" id="catalogo">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Catálogo completo</p>
+          <h2>Filtra por lo que es y por lo que hace.</h2>
+        </div>
+        <div class="section-acciones">
+          <p class="section-note" data-filtro-resumen>Sin filtros · ordenado por puntuación</p>
+          <button class="btn-mini" type="button" data-limpiar data-limpiar-filtros hidden>Limpiar filtros</button>
+        </div>
+      </div>
+
+      <div class="filtros">
+        <div class="filtro-grupo">
+          <span class="filtro-label">Tipo</span>
+          <div class="chips" data-tipos-chips aria-label="Filtrar por tipo"></div>
+        </div>
+        <div class="filtro-grupo">
+          <span class="filtro-label">Uso</span>
+          <div class="chips" data-usos-chips aria-label="Filtrar por uso"></div>
+        </div>
+      </div>
+
+      <div class="grid" data-items="24"></div>
+      <div class="lista-pie">
+        <p class="resultado" data-resultado aria-live="polite"></p>
+        <button class="btn ghost" type="button" data-vermas>Ver más</button>
+      </div>
+    </section>
+
+    <section class="facetas wrap" id="tipos">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Dos ejes, mismo nivel</p>
+          <h2>Explora por tipo o por uso</h2>
+        </div>
+        <p class="section-note">El tipo dice qué es. El uso dice para qué sirve. Puedes combinarlos: un agente también puede servir para código.</p>
+      </div>
+      <div class="facetas-grid">
+        <div class="facet-col">
+          <h3>Por tipo</h3>
+          <p>Qué es</p>
+          <div class="facet-tiles" data-tipos-lista></div>
+        </div>
+        <div class="facet-col" id="usos">
+          <h3>Por uso</h3>
+          <p>Para qué sirve</p>
+          <div class="facet-tiles" data-usos-lista></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta wrap">
+      <div>
+        <p class="eyebrow">Aporta</p>
+        <h2>¿Construiste algo con IA?</h2>
+        <p class="section-note">Añade tu skill, modelo o servidor MCP al radar. La comunidad decide con datos, no con marketing.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="#catalogo">Explorar catálogo</a>
+        <a class="btn ghost" href="../index.html">Ver las 25 landings</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p><strong>skillradar</strong> · Catálogo abierto de herramientas de IA</p>
+    <nav aria-label="Pie">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#necesidades">Necesidades</a>
+      <a href="#tipos">Tipos</a>
+      <a href="#usos">Usos</a>
+      <a href="../index.html">Galería</a>
+    </nav>
+    <p>Datos al <span data-fecha>2026-11-03</span> · <span data-total>1.901</span> entradas · <span data-tipos-n>9</span> tipos · <span data-usos-n>14</span> usos · <span data-fuentes-n>7</span> fuentes</p>
+    <p>Solo metadatos y enlaces; el contenido vive en su fuente.</p>
+  </footer>
+
+  <script src="../assets/catalogo.js"></script>
+  <script src="../assets/buscador.js"></script>
+</body>
+</html>

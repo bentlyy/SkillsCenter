@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "skill-radar"
+version = "0.1.0"
+description = "Radar de skills y herramientas de IA: rastrea GitHub, Reddit, Hacker News, MCP y paquetes, y los expone por MCP"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Alejandro Munoz Garay", email = "munozgarayalejandro@gmail.com" }]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "agent",
+    "skills",
+    "radar",
+    "discovery",
+    "github",
+    "trending",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "httpx>=0.27,<1",
+    "mcp>=2.2.0,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+skill-radar = "skill_radar.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/bentlyy/SkillsCenter"
+Repository = "https://github.com/bentlyy/SkillsCenter"
+Issues = "https://github.com/bentlyy/SkillsCenter/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/skill_radar"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/skill_radar/data" = "skill_radar/data"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "API.md", "CHANGELOG.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/generar-landings.py" = ["E501"]
