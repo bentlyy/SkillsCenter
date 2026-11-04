@@ -143,22 +143,36 @@ Herramientas expuestas:
 
 ## Skill para agentes (Skill Finder)
 
-`skills/skill-finder/` es una skill portable para cualquier agente compatible
-(opencode, Claude, etc.). Ensenya al agente a **encontrar** la skill o
-herramienta que el usuario pidio, combinando busqueda literal y busqueda por
-concepto, y a **reportar novedades** antes de recomendar.
+`skills/skill-finder/` es una skill portable para Claude Code, Codex y
+opencode (y otros agentes que lean `SKILL.md`). Ensenya al agente a
+**encontrar** la skill o herramienta que el usuario pidio, combinando busqueda
+literal y busqueda por concepto, y a **reportar novedades** antes de recomendar.
 
 El MCP `buscar` es texto completo literal: no entiende "quiero una web" si la
 entrada dice "frontend". La skill agrega la capa conceptual (14 intenciones con
 frases y sinonimos en espanol e ingles), un flujo de frescura y reglas para no
 inventar enlaces.
 
+| Agente | Ruta de usuario |
+|--------|-----------------|
+| Claude Code | `~/.claude/skills/skill-finder` |
+| Codex | `~/.agents/skills/skill-finder` |
+| opencode | `~/.config/opencode/skills/skill-finder` (tambien lee `~/.agents` y `~/.claude`) |
+
 ```powershell
-# instala la skill en opencode y Claude
+# Windows: Claude + Codex + opencode
 .\scripts\instalar-skill.ps1
 
-# solo opencode
+# un solo agente
+.\scripts\instalar-skill.ps1 -Destino codex
 .\scripts\instalar-skill.ps1 -Destino opencode
+```
+
+```bash
+# macOS/Linux o Windows con Python
+python scripts/instalar_skill.py
+python scripts/instalar_skill.py --destino codex
+python scripts/instalar_skill.py --scope project --proyecto .
 ```
 
 La skill funciona en tres modos, en orden de preferencia:

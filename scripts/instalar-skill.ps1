@@ -1,11 +1,12 @@
 # Instala la skill skill-finder en la carpeta de skills del agente.
 # Uso:
-#   .\scripts\instalar-skill.ps1                 # opencode + claude
+#   .\scripts\instalar-skill.ps1                 # Claude + Codex + opencode
+#   .\scripts\instalar-skill.ps1 -Destino codex
 #   .\scripts\instalar-skill.ps1 -Destino opencode
 #   .\scripts\instalar-skill.ps1 -Destino claude
 
 param(
-    [ValidateSet("opencode", "claude", "all")]
+    [ValidateSet("opencode", "claude", "codex", "all")]
     [string]$Destino = "all"
 )
 
@@ -18,15 +19,30 @@ if (-not (Test-Path -LiteralPath (Join-Path $origen "SKILL.md"))) {
     throw "No se encontro SKILL.md en $origen"
 }
 
+$catalogo = Join-Path $PSScriptRoot "..\landings\assets\catalogo.js"
 $destinos = @()
 if ($Destino -in @("opencode", "all")) {
-    $destinos += Join-Path $env:USERPROFILE ".config\opencode\skills\skill-finder"
+    $destinos += @{
+        Agente = "opencode"
+        Ruta = Join-Path $env:USERPROFILE ".config\opencode\skills\skill-finder"
+    }
+}
+if ($Destino -in @("codex", "all")) {
+    $destinos += @{
+        Agente = "codex"
+        Ruta = Join-Path $env:USERPROFILE ".agents\skills\skill-finder"
+    }
 }
 if ($Destino -in @("claude", "all")) {
-    $destinos += Join-Path $env:USERPROFILE ".claude\skills\skill-finder"
+    $destinos += @{
+        Agente = "claude"
+        Ruta = Join-Path $env:USERPROFILE ".claude\skills\skill-finder"
+    }
 }
 
-foreach ($rutaDestino in $destinos) {
+$instaladas = @()
+foreach ($itemDestino in $destinos) {
+    $rutaDestino = $itemDestino.Ruta
     $padre = Split-Path -Parent $rutaDestino
     if (-not (Test-Path -LiteralPath $padre)) {
         New-Item -ItemType Directory -Path $padre -Force | Out-Null
@@ -35,7 +51,6 @@ foreach ($rutaDestino in $destinos) {
         Remove-Item -LiteralPath $rutaDestino -Recurse -Force
     }
     Copy-Item -LiteralPath $origen -Destination $rutaDestino -Recurse -Force
-    $catalogo = Join-Path $PSScriptRoot "..\landings\assets\catalogo.js"
     if (Test-Path -LiteralPath $catalogo) {
         $assets = Join-Path $rutaDestino "assets"
         if (-not (Test-Path -LiteralPath $assets)) {
@@ -43,9 +58,17 @@ foreach ($rutaDestino in $destinos) {
         }
         Copy-Item -LiteralPath $catalogo -Destination (Join-Path $assets "catalogo.js") -Force
     }
-    Write-Output "Skill instalada en $rutaDestino"
+    $instaladas += [pscustomobject]@{ Agente = $itemDestino.Agente; Ruta = $rutaDestino }
 }
 
+if (-not (Test-Path -LiteralPath $catalogo)) {
+    Write-Warning "No se encontro $catalogo; la skill necesitara MCP o SQLite."
+}
+
+Write-Output "Skill Finder instalada:"
+foreach ($item in $instaladas) {
+    Write-Output ("  {0,-9} -> {1}" -f $item.Agente, $item.Ruta)
+}
 Write-Output ""
 Write-Output "Reinicia el agente para que descubra la skill."
-Write-Output "Verifica con: python `"$origen\scripts\skill_finder.py`" --stats"
+Write-Output ("Prueba: python `"{0}`" --stats" -f (Join-Path $instaladas[0].Ruta "scripts\skill_finder.py"))

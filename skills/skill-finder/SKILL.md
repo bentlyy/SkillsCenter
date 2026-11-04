@@ -234,17 +234,37 @@ Contrato completo y manejo de errores: `references/herramientas.md`.
 
 ## Instalación
 
-Copia esta carpeta a la carpeta de skills de tu agente:
+El instalador copia la skill y `assets/catalogo.js` para que funcione sin MCP.
+
+| Agente | Ruta de usuario | Invocación |
+|--------|-----------------|------------|
+| Claude Code | `~/.claude/skills/skill-finder` | `/skill-finder <consulta>` |
+| Codex | `~/.agents/skills/skill-finder` | `$skill-finder <consulta>` o pídela en lenguaje natural |
+| opencode | `~/.config/opencode/skills/skill-finder` | herramienta `skill` o lenguaje natural |
+
+opencode también descubre `~/.agents/skills` y `~/.claude/skills`, así que una
+sola copia en cualquiera de esas rutas sirve para varios agentes.
 
 ```powershell
-# opencode + claude (copia tambien assets/catalogo.js)
+# Windows: Claude + Codex + opencode (copia assets/catalogo.js)
 .\scripts\instalar-skill.ps1
 
-# manual: copia skills\skill-finder a
-#   %USERPROFILE%\.config\opencode\skills\skill-finder
-#   ~/.claude/skills/skill-finder
-# y copia landings\assets\catalogo.js a <destino>\assets\catalogo.js
+# un solo agente
+.\scripts\instalar-skill.ps1 -Destino codex
+.\scripts\instalar-skill.ps1 -Destino claude
+.\scripts\instalar-skill.ps1 -Destino opencode
 ```
+
+```bash
+# macOS/Linux o Windows con Python (stdlib)
+python scripts/instalar_skill.py                       # los tres, scope usuario
+python scripts/instalar_skill.py --destino codex
+python scripts/instalar_skill.py --scope project --proyecto /ruta/al/repo
+```
+
+En scope `project`, el instalador escribe en `.claude/skills`, `.agents/skills`
+y `.opencode/skills` dentro del repositorio; Codex y opencode comparten
+`.agents/skills`.
 
 Requisitos:
 

@@ -11,8 +11,10 @@ Todas las versiones notables de este proyecto se documentan aqui.
 - Script `skills/skill-finder/scripts/skill_finder.py` sin dependencias: lee
   `landings/assets/catalogo.js`, el CSV exportado o SQLite en modo lectura, y
   explica si respondio por coincidencia literal o por intencion.
-- Instalador `scripts/instalar-skill.ps1` para copiar la skill a las carpetas de
-  opencode y Claude.
+- Instalador `scripts/instalar-skill.ps1` para copiar la skill a Claude Code,
+  Codex (`~/.agents/skills`) y opencode, con el catalogo offline incluido.
+- Instalador multiplataforma `scripts/instalar_skill.py` (stdlib) con scope de
+  usuario o de proyecto (`.claude/skills`, `.agents/skills`, `.opencode/skills`).
 - Referencias de intenciones, taxonomia (tipo/uso/fuente/categoria) y contrato
   de herramientas MCP/CLI/script.
 
