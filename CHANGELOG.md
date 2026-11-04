@@ -4,12 +4,17 @@ Todas las versiones notables de este proyecto se documentan aqui.
 
 ## [No publicado]
 
+- Web consolidada en `web/`: se conserva solo el buscador compacto funcional y
+  se eliminan los 24 prototipos de muestra, sus galerias y los assets sin uso.
+- Export del catalogo simplificado a `web/assets/catalogo.js` con
+  `scripts/generar-catalogo-web.py`; ya no se genera la muestra de 70 entradas.
+- Instaladores y skill-finder actualizados a la ruta `web/assets/catalogo.js`.
 - Skill portable `skills/skill-finder/` para agentes: busqueda de skills y
   herramientas por texto literal y por concepto (14 intenciones con frases y
   sinonimos en espanol e ingles), flujo de frescura, verificacion de fichas y
   reglas para no inventar enlaces.
 - Script `skills/skill-finder/scripts/skill_finder.py` sin dependencias: lee
-  `landings/assets/catalogo.js`, el CSV exportado o SQLite en modo lectura, y
+  `web/assets/catalogo.js`, el CSV exportado o SQLite en modo lectura, y
   explica si respondio por coincidencia literal o por intencion.
 - Instalador `scripts/instalar-skill.ps1` para copiar la skill a Claude Code,
   Codex (`~/.agents/skills`) y opencode, con el catalogo offline incluido.

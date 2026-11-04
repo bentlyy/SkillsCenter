@@ -180,7 +180,7 @@ La skill funciona en tres modos, en orden de preferencia:
 1. **MCP `skillscenter`**: datos frescos, ficha e historico.
 2. **CLI `skillscenter`**: mismo motor sin agente MCP.
 3. **Script incluido** (`skills/skill-finder/scripts/skill_finder.py`): sin
-   dependencias, lee `landings/assets/catalogo.js`, el CSV exportado o la base
+   dependencias, lee `web/assets/catalogo.js`, el CSV exportado o la base
    SQLite en modo lectura.
 
 ```bash
@@ -241,14 +241,23 @@ Los informes quedan en `informes/` (ignorado por git).
 `uid` es la clave estable (`github:owner/repo`, `mcp:nombre`, `npm:paquete`...) y
 `slug` es la URL legible que usara la web.
 
-## Landings de muestra
+## Sitio web
 
-`landings/` contiene **25 prototipos estaticos** (5 skills de diseno x 5 variantes)
-para elegir la direccion visual de la web. La mayoria usa una muestra de 70
-entradas reales; **`ui-styling/04-compact.html` es el buscador funcional** sobre
-las 1.901 entradas del catalogo (`assets/catalogo.js`). Filtra por dos ejes
-independientes y combinables: **tipo** (que es) y **uso** (para que sirve).
-Todo funciona sin internet, sin frameworks y sin fuentes externas.
+`web/` contiene el buscador funcional sobre las 1.901 entradas del catalogo
+(`web/assets/catalogo.js`). Filtra por dos ejes independientes y combinables:
+**tipo** (que es) y **uso** (para que sirve). Todo funciona sin internet, sin
+frameworks y sin fuentes externas.
+
+```
+web/
+├── index.html
+└── assets/
+    ├── base.css       base neutral y layout
+    ├── tema.css       variante densa del buscador
+    ├── compacto.css   buscador, facetas y fichas
+    ├── catalogo.js    catalogo exportado (solo metadatos)
+    └── buscador.js    busqueda, filtros e intenciones
+```
 
 El buscador incluye texto libre con acentos y prefijos, busqueda por intencion
 en lenguaje natural (por ejemplo, "diseno de paginas web" o "arquitectura de
@@ -258,21 +267,13 @@ directos a la fuente original. Si la busqueda literal no encuentra nada, aplica
 una intencion detectada en lugar de dejar la pagina vacia. Solo carga metadatos:
 no copia ni ejecuta el contenido de las skills.
 
-| Skill | Variantes |
-|-------|-----------|
-| `design` | editorial, glass, brutalist, swiss, luxury |
-| `ui-ux-pro-max` | saas, marketplace, devtool, directory, ai-search |
-| `ui-styling` | light, dark, airy, compact, gradient |
-| `design-system` | grid, monochrome, bento, type, tokens |
-| `brand` | wordmark, manifesto, color, geometric, community |
-
 ```bash
-# refresca datos.js (muestra), catalogo.js (1.901) y regenera las 31 paginas
-python scripts/generar-datos-landings.py
-python scripts/generar-landings.py
+# exporta el catalogo completo a web/assets/catalogo.js
+python scripts/generar-catalogo-web.py
 ```
 
-Abre `landings/index.html` para ver la galeria completa.
+Abre `web/index.html` en el navegador. Para publicarlo, sirve la carpeta `web/`
+como sitio estatico.
 
 ## Desarrollo
 
@@ -288,5 +289,5 @@ python -m ruff format .
   sincronizar.
 - No descarga ni ejecuta las herramientas que descubre.
 - No requiere claves de IA ni embeddings; la similitud es textual (FTS5).
-- No es aun la web publica: `landings/` son prototipos visuales con datos de
-  muestra, salvo el buscador compacto, que ya usa el catalogo completo.
+- No es aun la web publica: `web/` es el buscador funcional, pero aun no tiene
+  backend ni aportes de usuarios; el alta de entradas pasa por el catalogo.

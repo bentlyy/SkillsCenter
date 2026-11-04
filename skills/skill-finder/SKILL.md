@@ -270,11 +270,11 @@ Requisitos:
 
 - **Con MCP**: agrega `skillscenter serve` a tu configuración MCP (ver README).
 - **Sin MCP**: el script funciona solo con Python 3.10+ y el catálogo exportado
-  (`landings/assets/catalogo.js`) o la base SQLite.
-- **Sin catálogo**: ejecuta `python scripts/generar-datos-landings.py` o
+  (`web/assets/catalogo.js`) o la base SQLite.
+- **Sin catálogo**: ejecuta `python scripts/generar-catalogo-web.py` o
   `skillscenter sync` antes de buscar.
 
 El script busca el catálogo en este orden: `--catalogo`, variable
 `SKILLSCENTER_CATALOGO`, base SQLite (`SKILLSCENTER_DB` o la ruta por defecto),
-`assets/catalogo.js` de la skill instalada, `landings/assets/catalogo.js` del
+`assets/catalogo.js` de la skill instalada, `web/assets/catalogo.js` del
 repositorio y `informes/catalogo-completo.csv`.

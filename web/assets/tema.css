@@ -1,0 +1,29 @@
+/* Tema del buscador compacto: variante densa sobre base.css. */
+.ui.v4 {
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #666666;
+  --surface: #ffffff;
+  --border: #e5e5e5;
+  --accent: #16a34a;
+  --accent-fg: #ffffff;
+  --radius: 4px;
+  font-size: 14px;
+}
+.ui.v4 .nav { padding-block: 9px; }
+.ui.v4 .nav-links { gap: 16px; font-size: 0.82rem; }
+.ui.v4 .hero { padding-block: 36px 20px; gap: 12px; max-width: 860px; }
+.ui.v4 h1 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); letter-spacing: -0.02em; }
+.ui.v4 .lede { font-size: 0.95rem; }
+.ui.v4 .search input { padding: 9px 12px; }
+.ui.v4 .search button { min-height: 42px; padding: 9px 16px; }
+.ui.v4 .stats { gap: 6px; margin-bottom: 28px; }
+.ui.v4 .stat { padding: 10px 12px; }
+.ui.v4 .stat strong { font-size: 1.2rem; }
+.ui.v4 .grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.ui.v4 .item { padding: 12px; min-height: 0; gap: 5px; }
+.ui.v4 .item h3 { font-size: 0.9rem; }
+.ui.v4 .desc { font-size: 0.78rem; -webkit-line-clamp: 2; }
+.ui.v4 .chips { gap: 5px; margin: 12px 0 14px; }
+.ui.v4 .chip { padding: 5px 10px; min-height: 30px; font-size: 0.74rem; }
+.ui.v4 .cats-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px; }

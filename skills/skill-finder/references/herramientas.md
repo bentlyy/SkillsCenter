@@ -134,7 +134,7 @@ En este orden, el primero que exista:
 2. `SKILLSCENTER_CATALOGO` (variable de entorno)
 3. `SKILLSCENTER_DB` o `%LOCALAPPDATA%\skillscenter\radar.db` (SQLite, solo lectura)
 4. `assets/catalogo.js` de la skill instalada (lo copia el instalador)
-5. `landings/assets/catalogo.js` del repositorio (autodetectado desde la skill)
+5. `web/assets/catalogo.js` del repositorio (autodetectado desde la skill)
 6. `informes/catalogo-completo.csv` en el directorio actual
 
 `catalogo.js` es la fuente preferida sin MCP: ya trae tipo, uso y fecha de
@@ -186,6 +186,6 @@ aviso a la respuesta: "el catálogo es del <fecha>; para lo último, sincroniza"
 - GitHub sin token: menos búsquedas por minuto; puede tardar más.
 - `sincronizar` devuelve `estado` y `avisos` por fuente: cita el aviso.
 - Si el catálogo local está vacío: pide `skillscenter init && skillscenter sync`
-  o `python scripts/generar-datos-landings.py`.
+  o `python scripts/generar-catalogo-web.py`.
 
 Nunca rellenes un fallo de fuente con resultados de otra búsqueda no relacionada.

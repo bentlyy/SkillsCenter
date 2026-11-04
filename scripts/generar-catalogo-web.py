@@ -1,8 +1,7 @@
-"""Exporta la muestra de las landings y el catalogo completo del buscador.
+"""Exporta el catalogo completo que consume el buscador web.
 
-- `landings/assets/datos.js`: 70 entradas para los 25 prototipos visuales.
-- `landings/assets/catalogo.js`: todo el catalogo en formato compacto para
-  `04-compact.html`. Solo guarda nombre, url, fuente, tipo, uso, score, metrica,
+- `web/assets/catalogo.js`: todo el catalogo en formato compacto para
+  `web/index.html`. Solo guarda nombre, url, fuente, tipo, uso, score, metrica,
   descripcion corta y topics; nunca el contenido de la skill.
 """
 
@@ -30,8 +29,7 @@ NOMBRES = {
 }
 
 raiz = Path(__file__).resolve().parents[1]
-destino_muestra = raiz / "landings" / "assets" / "datos.js"
-destino_catalogo = raiz / "landings" / "assets" / "catalogo.js"
+destino_catalogo = raiz / "web" / "assets" / "catalogo.js"
 
 
 def _json(valor: str | None, defecto):
@@ -99,61 +97,6 @@ def _filas(conexion: sqlite3.Connection) -> list[sqlite3.Row]:
           FROM items i
         """
     ).fetchall()
-
-
-def _muestra(filas: list[sqlite3.Row]) -> dict:
-    por_fuente: dict[str, list[dict]] = {}
-    for fila in filas:
-        por_fuente.setdefault(fila["fuente"], []).append(dict(fila))
-
-    seleccion = []
-    vistos = set()
-    for fuente in por_fuente:
-        ordenados = sorted(
-            por_fuente[fuente], key=lambda f: (f["score"] or 0, f["nombre"]), reverse=True
-        )
-        for fila in ordenados[:10]:
-            if fila["uid"] in vistos:
-                continue
-            vistos.add(fila["uid"])
-            seleccion.append(fila)
-
-    seleccion.sort(key=lambda f: (f["score"] or 0, f["nombre"]), reverse=True)
-
-    items = []
-    for fila in seleccion:
-        metricas = _json(fila["metricas"], {})
-        items.append(
-            {
-                "nombre": fila["nombre"],
-                "fuente": NOMBRES.get(fila["fuente"], fila["fuente"]),
-                "fuenteId": fila["fuente"],
-                "tipo": fila["tipo"],
-                "url": fila["url"],
-                "desc": _recortar(fila["descripcion"] or "", 140),
-                "cat": fila["cat"],
-                "score": round(fila["score"] or 0),
-                "metricas": metricas,
-            }
-        )
-
-    fuentes = [
-        {"id": f, "nombre": NOMBRES.get(f, f), "n": len(v)}
-        for f, v in sorted(por_fuente.items(), key=lambda kv: -len(kv[1]))
-    ]
-    categorias = Counter((fila["cat"] or "otros") for fila in filas)
-    return {
-        "actualizado": date.today().isoformat(),
-        "total": len(filas),
-        "fuentes": len(por_fuente),
-        "categorias": len(categorias),
-        "nuevos": len(filas),
-        "fuentesDetalle": fuentes,
-        "categoriasDetalle": [
-            {"nombre": c, "n": n} for c, n in sorted(categorias.items(), key=lambda kv: -kv[1])
-        ],
-        "items": items,
-    }
 
 
 def _catalogo(filas: list[sqlite3.Row]) -> dict:
@@ -234,12 +177,9 @@ def _catalogo(filas: list[sqlite3.Row]) -> dict:
     }
 
 
-def _escribir(ruta: Path, variable: str, datos: dict, compacto: bool) -> int:
+def _escribir(ruta: Path, variable: str, datos: dict) -> int:
     ruta.parent.mkdir(parents=True, exist_ok=True)
-    if compacto:
-        cuerpo = json.dumps(datos, ensure_ascii=False, separators=(",", ":"))
-    else:
-        cuerpo = json.dumps(datos, ensure_ascii=False, indent=2)
+    cuerpo = json.dumps(datos, ensure_ascii=False, separators=(",", ":"))
     ruta.write_text(f"window.{variable} = {cuerpo};\n", encoding="utf-8")
     return ruta.stat().st_size
 
@@ -249,16 +189,9 @@ def main() -> None:
     conexion.row_factory = sqlite3.Row
     filas = _filas(conexion)
 
-    muestra = _muestra(filas)
-    tam_muestra = _escribir(destino_muestra, "RADAR", muestra, compacto=False)
-
     catalogo = _catalogo(filas)
-    tam_catalogo = _escribir(destino_catalogo, "CATALOGO", catalogo, compacto=True)
+    tam_catalogo = _escribir(destino_catalogo, "CATALOGO", catalogo)
 
-    print(
-        f"{len(muestra['items'])} items de muestra -> {destino_muestra} "
-        f"({tam_muestra / 1024:.0f} KB)"
-    )
     print(
         f"{len(catalogo['items'])} items de catalogo -> {destino_catalogo} "
         f"({tam_catalogo / 1024:.0f} KB)"

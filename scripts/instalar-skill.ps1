@@ -19,7 +19,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $origen "SKILL.md"))) {
     throw "No se encontro SKILL.md en $origen"
 }
 
-$catalogo = Join-Path $PSScriptRoot "..\landings\assets\catalogo.js"
+$catalogo = Join-Path $PSScriptRoot "..\web\assets\catalogo.js"
 $destinos = @()
 if ($Destino -in @("opencode", "all")) {
     $destinos += @{

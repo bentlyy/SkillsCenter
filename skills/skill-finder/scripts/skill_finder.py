@@ -1043,8 +1043,8 @@ def _candidatos(explicito: str | None) -> list[Path]:
     skill_root = Path(__file__).resolve().parents[1]
     candidatos.append(skill_root / "assets" / "catalogo.js")
     raiz = Path(__file__).resolve().parents[3]
-    candidatos.append(raiz / "landings" / "assets" / "catalogo.js")
-    candidatos.append(Path.cwd() / "landings" / "assets" / "catalogo.js")
+    candidatos.append(raiz / "web" / "assets" / "catalogo.js")
+    candidatos.append(Path.cwd() / "web" / "assets" / "catalogo.js")
     candidatos.append(Path.cwd() / "informes" / "catalogo-completo.csv")
     return candidatos
 
@@ -1063,7 +1063,7 @@ def cargar_catalogo(explicito: str | None) -> tuple[Path, list[dict[str, Any]], 
             return candidato, items, actualizado
     raise FileNotFoundError(
         "No se encontro el catalogo. Usa --catalogo, SKILLSCENTER_CATALOGO o "
-        "genera landings/assets/catalogo.js con scripts/generar-datos-landings.py."
+        "genera web/assets/catalogo.js con scripts/generar-catalogo-web.py."
     )
 
 

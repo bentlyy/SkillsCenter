@@ -16,7 +16,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 ORIGEN = RAIZ / "skills" / "skill-finder"
-CATALOGO = RAIZ / "landings" / "assets" / "catalogo.js"
+CATALOGO = RAIZ / "web" / "assets" / "catalogo.js"
 
 RUTAS_USUARIO = {
     "claude": lambda: Path.home() / ".claude" / "skills",
