@@ -141,6 +141,48 @@ Herramientas expuestas:
 | `sincronizar` | Dispara el rastreo ahora |
 | `digest` | Informe Markdown listo para leer |
 
+## Skill para agentes (Skill Finder)
+
+`skills/skill-finder/` es una skill portable para cualquier agente compatible
+(opencode, Claude, etc.). Ensenya al agente a **encontrar** la skill o
+herramienta que el usuario pidio, combinando busqueda literal y busqueda por
+concepto, y a **reportar novedades** antes de recomendar.
+
+El MCP `buscar` es texto completo literal: no entiende "quiero una web" si la
+entrada dice "frontend". La skill agrega la capa conceptual (14 intenciones con
+frases y sinonimos en espanol e ingles), un flujo de frescura y reglas para no
+inventar enlaces.
+
+```powershell
+# instala la skill en opencode y Claude
+.\scripts\instalar-skill.ps1
+
+# solo opencode
+.\scripts\instalar-skill.ps1 -Destino opencode
+```
+
+La skill funciona en tres modos, en orden de preferencia:
+
+1. **MCP `skillscenter`**: datos frescos, ficha e historico.
+2. **CLI `skillscenter`**: mismo motor sin agente MCP.
+3. **Script incluido** (`skills/skill-finder/scripts/skill_finder.py`): sin
+   dependencias, lee `landings/assets/catalogo.js`, el CSV exportado o la base
+   SQLite en modo lectura.
+
+```bash
+python skills/skill-finder/scripts/skill_finder.py "quiero armar una pagina web"
+python skills/skill-finder/scripts/skill_finder.py "mcp postgres" --tipo mcp
+python skills/skill-finder/scripts/skill_finder.py --intenciones
+python skills/skill-finder/scripts/skill_finder.py --stats
+```
+
+| Archivo | Contenido |
+|---------|-----------|
+| `SKILL.md` | Disparadores, flujo obligatorio y reglas de respuesta |
+| `references/intenciones.md` | Mapa de las 14 intenciones con frases y terminos |
+| `references/taxonomia.md` | Ejes tipo / uso / fuente / categoria y filtros |
+| `references/herramientas.md` | Contrato MCP/CLI/script, salidas y fallback |
+
 ## Puntuacion
 
 El "calor" mezcla cuatro senales en una escala 0-100:

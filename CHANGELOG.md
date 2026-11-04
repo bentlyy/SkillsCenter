@@ -2,6 +2,20 @@
 
 Todas las versiones notables de este proyecto se documentan aqui.
 
+## [No publicado]
+
+- Skill portable `skills/skill-finder/` para agentes: busqueda de skills y
+  herramientas por texto literal y por concepto (14 intenciones con frases y
+  sinonimos en espanol e ingles), flujo de frescura, verificacion de fichas y
+  reglas para no inventar enlaces.
+- Script `skills/skill-finder/scripts/skill_finder.py` sin dependencias: lee
+  `landings/assets/catalogo.js`, el CSV exportado o SQLite en modo lectura, y
+  explica si respondio por coincidencia literal o por intencion.
+- Instalador `scripts/instalar-skill.ps1` para copiar la skill a las carpetas de
+  opencode y Claude.
+- Referencias de intenciones, taxonomia (tipo/uso/fuente/categoria) y contrato
+  de herramientas MCP/CLI/script.
+
 ## [0.1.0] - 2026-11-03
 
 Primera version funcional.
